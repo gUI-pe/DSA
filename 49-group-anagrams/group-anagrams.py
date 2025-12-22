@@ -6,8 +6,10 @@ class Solution:
 
         groups = defaultdict(list)
 
-        for i, s in enumerate(strs):
-            key = "".join(sorted(s))
-            groups[key].append(s)
+        for s in strs:
+            count = [0] * 26
 
+            for c in s:
+                count[ord(c) - ord('a')] += 1
+            groups[tuple(count)].append(s)
         return list(groups.values())
