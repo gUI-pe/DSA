@@ -6,7 +6,7 @@ class Solution:
         # creates a dict to keep how many times an int is called
         for i in nums:
             book[i] += 1
-        # sorts the dict by value in descending order
+        # sorts the dict by value in acs order
         book = dict(sorted(book.items(), key=lambda item: item[1]))
 
         bookAnswers = list(book.keys())
