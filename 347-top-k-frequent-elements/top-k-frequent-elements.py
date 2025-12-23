@@ -3,16 +3,16 @@ from collections import defaultdict
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:  
         book = defaultdict(int)
+        freq = [[] for i in range(len(nums) + 1)]
         # creates a dict to keep how many times an int is called
         for i in nums:
             book[i] += 1
-        # sorts the dict by value in acs order
-        book = dict(sorted(book.items(), key=lambda item: item[1]))
 
-        bookAnswers = list(book.keys())
-
-        answer = []
-        for _ in range (k):
-            answer.append(bookAnswers.pop())
-
-        return answer
+        for n, c in book.items():
+            freq[c].append(n)
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
